@@ -31,12 +31,16 @@ with open('ip.txt', 'w') as file:
             elements = soup.find_all('li')
         
         # 遍历所有元素,查找IP地址
+        i=0
         for element in elements:
+            if i >= 25:
+                break
             element_text = element.get_text()
             ip_matches = re.findall(ip_pattern, element_text)
             
             # 如果找到IP地址,则写入文件
             for ip in ip_matches:
                 file.write(ip + '\n')
+                i=i+1
 
 print('IP地址已保存到ip.txt文件中。')
